@@ -1,4 +1,4 @@
-(ns chapter01)
+(ns exercises.chapter01)
 
 ; 1.3
 
