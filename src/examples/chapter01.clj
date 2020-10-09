@@ -16,3 +16,17 @@
                       guess
                       (recur (improve guess))))]
     (sqrt-iter 1.0)))
+
+(defn factorial [n]
+  (let [iter (fn [product counter]
+               (if (> counter n)
+                 product
+                 (recur (* counter product) (+ counter 1))))]
+    (iter 1 1)))
+
+(defn fact-iter [product counter max-count]
+  (if (> counter max-count)
+    product
+    (fact-iter (* counter product)
+               (+ counter 1)
+               max-count)))
