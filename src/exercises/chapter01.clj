@@ -119,3 +119,46 @@
   (* 5 n n))
 
 ; 5n^2
+
+; 1.11
+
+(defn f-rec [n]
+  (if (< n 3)
+    n
+    (+ (f (- n 1)) (* 2 (f (- n 2))) (* 3 (f (- n 3))))))
+
+(defn f-iter [n]
+  (let [iter (fn [a b c count]
+               (if (= count 0)
+                 a
+                 (recur b c (+ c (* 2 b) (* 3 a)) (- count 1))))]
+    (iter 0 1 2 n)))
+
+; 0 if n = 0
+; 1 if n = 1
+; 2 if n = 2
+; 4 if n = 3 (+ (* 1 (f 2)) => (* 1 2)
+;               (* 2 (f 1)) => (* 2 1)
+;               (* 3 (f 0))) => (* 3 0)
+; 11 if n = 4 (+ (* 1 (f 3)) => (* 1 4)
+;                (* 2 (f 2)) => (* 2 2)
+;                (* 3 (f 1))) => (* 3 1)
+
+; 1.12
+
+(defn pascals-triangle
+  "row = 行, column = 列"
+  [row column]
+  (if (or (= column row) (= column 1))                      ; 行の最初(column=1)と最後(column=row)は1
+    1
+    (+ (pascals-triangle (- row 1) (- column 1))
+       (pascals-triangle (- row 1) column))))
+
+; (pascals-triangle 3 2)
+; (+ (pascals-triangle 2 1) => 1
+;    (pascals-triangle 2 2)) => 1
+; (pascals-triangle 4 2)
+; (+ (pascals-triangle 3 1) => 1
+;    (pascals-triangle 3 2)) => 2
+
+; 1.13
