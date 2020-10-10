@@ -125,7 +125,9 @@
 (defn f-rec [n]
   (if (< n 3)
     n
-    (+ (f (- n 1)) (* 2 (f (- n 2))) (* 3 (f (- n 3))))))
+    (+ (* 1 (f-rec (- n 1)))
+       (* 2 (f-rec (- n 2)))
+       (* 3 (f-rec (- n 3))))))
 
 (defn f-iter [n]
   (let [iter (fn [a b c count]
